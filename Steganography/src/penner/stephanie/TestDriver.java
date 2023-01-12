@@ -19,7 +19,7 @@ public class TestDriver {
 			int k = (int) Long.parseLong(binary, 2);
 			System.out.println(k);
 		}
-
+//hi
 		
 	}
 
