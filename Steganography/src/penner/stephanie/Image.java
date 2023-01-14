@@ -37,5 +37,13 @@ public class Image {
 		return numPixels;
 	}
 	
+	/**
+	 * Get the encrypted message from the image (stop at sentinal (sp))
+	 * return it as a new array of rgb
+	 * @return
+	 */
+	public int[] getMessage(int[] rgbArray) {
+		return rgbArray; //Placeholder
+	}
 	
 }
