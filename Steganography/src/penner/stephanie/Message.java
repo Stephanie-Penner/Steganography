@@ -10,8 +10,8 @@ package penner.stephanie;
  */
 public class Message {
 	private char[] messageChar;
-	private String[] messageBinary;
-	private String message;
+	private String messageBinary;
+	//private String message;
 	
 	/**
 	 * Takes a user-inputted message in ASCII form
@@ -21,7 +21,7 @@ public class Message {
 	 */
 	Message(char[] memoC){
 		messageChar = memoC;
-		messageBinary = new String[memoC.length]; 
+		messageBinary = ""; 
 	}
 	
 	/**
@@ -30,8 +30,8 @@ public class Message {
 	 * This constructor is used in decrypting a message.
 	 * @param message
 	 */
-	Message(String[] memoB) {
-		messageChar = new char[memoB.length];
+	Message(String memoB) {
+		messageChar = new char[memoB.length()];
 		messageBinary = memoB;
 	}
 	
@@ -40,61 +40,27 @@ public class Message {
 	 * @param chars - array of chars
 	 * @return array of binary version of chars
 	 */
-	public String[] toBinary(char[] chars) {
-
-		String[] binary = new String[chars.length];
-		
-		for(int j = 0; j < chars.length; j ++) {
-			int ascII = (int) chars[j];
+	public void makeBinary() {
+		for(int j = 0; j < messageChar.length; j ++) {
+			int decimalRem = (int) messageChar[j]; // remaining value of ascII
 			
-			
-			int ascIIrem = ascII; // remaining value of ascII
-			String binaryNum = ""; // Binary num
-			
-			for (int i = 6; i > -1; i--) {
+			for (int i = 7; i > -1; i--) {
 				int binaryColVal = (int) (Math.pow(2,  i));
-				if(ascIIrem > binaryColVal) {
-					ascIIrem = ascIIrem - binaryColVal;
-					binaryNum = binaryNum + "1"; //Col active
+				
+				if(decimalRem >= binaryColVal) {
+					decimalRem = decimalRem - binaryColVal;
+					messageBinary = messageBinary + "1"; //Col active
 				}
-				binaryNum = binaryNum + "0"; //Column inactive
+				else {
+					messageBinary = messageBinary + "0"; //Column inactive
+				}
 			}
-			
-			binary[j] = binaryNum;
 		}
-		return binary;
 	}
-
-
 	
-	/**
-	 * Grab the LSBs from a array of the rgb pixels containing the 
-	 * message from the modified image and convert them to the 
-	 * message in binary
-	 * @param memoBinary
-	 */
-	public String[] getBits(String[] memoBinary) {
-		String[] memoBits = new String[memoBinary.length];
-		String binaryNum = "";
-		int countBinNum = 0;
-		
-		for(int i = 0; i < memoBinary.length; i++) {
-			String binaryBit = memoBinary[i];
-			//Slice for last char, build 7 then convert to a char
-			
-			
-			// build 7 digits:
-			if ((i + 1) % 7 == 0) {
-				//Convert binaryNum to a char
-				memoBits[countBinNum] = binaryNum;
-				binaryNum = "";
-			}
-			
-			//TO DO: get LSB and then binary the way through
-			//TO DO: fill in each slot with binary form
-		}
-		
-		return memoBits;
+	
+	public void makeChar() {
+		//for(int j = 0; )
 	}
 	
 	/**
@@ -102,7 +68,7 @@ public class Message {
 	 * @param binaryMsg
 	 * @return memo in binary form
 	 */
-	public String[] getBinary(char[] binaryMsg) {
+	public String getBinary() {
 		return messageBinary;
 	}
 	
@@ -111,7 +77,7 @@ public class Message {
 	 * @param binaryMsg
 	 * @return memo in char form
 	 */
-	public char[] getChar(int[] charMsg) {
+	public char[] getChar() {
 		return messageChar;
 	}
 	

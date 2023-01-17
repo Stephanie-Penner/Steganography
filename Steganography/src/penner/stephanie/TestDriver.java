@@ -7,6 +7,26 @@ public class TestDriver {
 
 	public static void main(String[] args) {
 		
+		Image im = new Image("testImage.jpg");
+		String binary = Arrays.toString(im.getMessageBinary());
+		Message m = new Message(binary);
+		
+		
+		Scanner in = new Scanner(System.in);
+		String msg = in.nextLine(); //Get message to encode
+		
+		char[] chars = msg.toCharArray(); //Convert msg to char array
+		Message c = new Message(chars); //Create msg using char array
+		
+		c.makeBinary(); //Make binary ver of msg
+		
+		//Print out binary ver of msg
+		System.out.println(c.getBinary());
+		
+		
+		
+		
+		
 		/*
 		//Test code: user input msg, covert to char array
 		// then convert to binary.
