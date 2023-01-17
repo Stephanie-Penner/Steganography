@@ -27,6 +27,7 @@ public class Image {
 		rgbArray = getRGBValues();
 	}
 	
+	
 	public int[] getRGBValues(){
 		int[] rgbArray = new int[numPixels];
 		rgbArray = image.getRGB(0, 0, width, height, rgbArray, 0, width);
