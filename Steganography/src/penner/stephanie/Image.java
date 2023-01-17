@@ -3,6 +3,7 @@ package penner.stephanie;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -11,7 +12,7 @@ public class Image {
 	private int width;
 	private int height;
 	private int numPixels;
-	private int [] rgbArray;
+	private String[] rgbBinary;
 	
 	Image(String fileName){
 		try {
@@ -24,13 +25,19 @@ public class Image {
 		width = image.getWidth();
 		height = image.getHeight();
 		numPixels = width*height;
-		rgbArray = getRGBValues();
+		rgbBinary = getRGBValues();
 	}
 	
-	public int[] getRGBValues(){
+	public String[] getRGBValues(){
 		int[] rgbArray = new int[numPixels];
 		rgbArray = image.getRGB(0, 0, width, height, rgbArray, 0, width);
-		return rgbArray;
+		String[] rgbArrayBinary = new String[rgbArray.length];
+		
+		for(int i = 0; i < numPixels; i++) {
+			String binary = Integer.toBinaryString(rgbArray[i]);
+			rgbArrayBinary[i] = binary;
+		}
+		return rgbArrayBinary;
 	}
 	
 	public int getNumPixels() {
@@ -38,12 +45,25 @@ public class Image {
 	}
 	
 	/**
-	 * Get the encrypted message from the image (stop at sentinal (sp))
+	 * Get the binary message from the image (stop at sentinal (sp))
 	 * return it as a new array of rgb
 	 * @return
 	 */
-	public int[] getMessage(int[] rgbArray) {
-		return rgbArray; //Placeholder
+	public String[] getMessageBinary() {
+		String[] fullBinary = rgbBinary;
+		
+		String[] msgBinary = new String[fullBinary.length/4];
+		String character;
+		
+		for (int i = 0; i < msgBinary.length; i++) {
+			character = "";
+			for (int k = 0; k < 4; k++) {
+				character += fullBinary[i*4+k].substring(fullBinary[i*4+k].length() - 2);
+			}
+			msgBinary[i] = character;
+		}
+		
+		return msgBinary;
 	}
 	
 }

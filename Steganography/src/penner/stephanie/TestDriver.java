@@ -7,6 +7,7 @@ public class TestDriver {
 
 	public static void main(String[] args) {
 		
+		/*
 		//Test code: user input msg, covert to char array
 		// then convert to binary.
 		Scanner in = new Scanner(System.in);
@@ -21,28 +22,25 @@ public class TestDriver {
 		//Message memoA = new Message(memoChar);
 		//memoA.toBinary(memoChar);
 		
+		*/
 		
-		
-		//Testing images
 		/*
+		//Testing images
+		
 		Image image = new Image("testImage.jpg");
 		
-		int[] rgbArray = image.getRGBValues();
+		String[] rgbArray = image.getRGBValues();
 		
-		String test = Arrays.toString(rgbArray);
+		String[] testBinary = image.getMessageBinary();
 		
-		System.out.println(test);
-		
-		for(int i = 0; i < 200; i++) {
-			String binary = Integer.toBinaryString(rgbArray[i]);
-			System.out.println(binary + ", " + rgbArray[i]);
-			int k = (int) Long.parseLong(binary, 2);
-			System.out.println(k);
-		}
-		*/
-//hi
-		
-
+		for (int i = 0; i < rgbArray.length; i++) {
+			System.out.println(rgbArray[i]);
+			if (i % 4 == 0) {
+				System.out.println(testBinary[i/4]);
+			}
+			
+		}*/
 	}
+	
 
 }
