@@ -45,8 +45,9 @@ public class Image {
 	}
 	
 	/**
-	 * Get the binary message from the image (stop at sentinal (sp))
-	 * return it as a new array of rgb
+	 * Get the last 2 bits from the blue binary code (the encrypted msg)
+	 * and put it into groups of 8 bits (8 bits = 1 char in encrypted msg)
+	 * and return it as a new array of binary strings
 	 * @return
 	 */
 	public String getMessageBinary() {
