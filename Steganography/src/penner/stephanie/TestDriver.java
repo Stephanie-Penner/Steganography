@@ -24,22 +24,19 @@ public class TestDriver {
 		
 		*/
 		
-		/*
+		
 		//Testing images
 		
 		Image image = new Image("testImage.jpg");
 		
-		String[] rgbArray = image.getRGBValues();
+		//String[] rgbArray = image.getRGBValues();
 		
-		String[] testBinary = image.getMessageBinary();
+		String testBinary = image.getMessageBinary();
 		
-		for (int i = 0; i < rgbArray.length; i++) {
-			System.out.println(rgbArray[i]);
-			if (i % 4 == 0) {
-				System.out.println(testBinary[i/4]);
-			}
+		System.out.println(testBinary);
+		System.out.println("done");
 			
-		}*/
+		
 	}
 	
 

@@ -25,7 +25,7 @@ public class Message {
 	}
 	
 	/**
-	 * Takes a user-inputted message in binary form
+	 * Takes a user-inputed message in binary form
 	 * and creates a version of type Message.
 	 * This constructor is used in decrypting a message.
 	 * @param message
