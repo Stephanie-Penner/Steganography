@@ -7,6 +7,7 @@ public class TestDriver {
 
 	public static void main(String[] args) {
 		
+		// Jenny Testing: Encrypt and decrypt message from characters to binary
 		Image im = new Image("testImage.jpg");
 		String binary = Arrays.toString(im.getMessageBinary());
 		Message m = new Message(binary);
@@ -14,14 +15,17 @@ public class TestDriver {
 		
 		Scanner in = new Scanner(System.in);
 		String msg = in.nextLine(); //Get message to encode
-		
-		char[] chars = msg.toCharArray(); //Convert msg to char array
-		Message c = new Message(chars); //Create msg using char array
-		
+		Message c = new Message(msg.toCharArray()); //Create msg using char array
 		c.makeBinary(); //Make binary ver of msg
 		
-		//Print out binary ver of msg
 		System.out.println(c.getBinary());
+		
+		//If given a string of binary, get the Print out binary ver of msg
+		Message b = new Message(c.getBinary());
+		b.makeChar();
+		
+		System.out.println("Message b" + b.getBinary());
+		System.out.println(Arrays.toString(b.getChar()));
 		
 		
 		

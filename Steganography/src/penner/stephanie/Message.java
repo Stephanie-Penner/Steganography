@@ -1,5 +1,7 @@
 package penner.stephanie;
 
+
+
 /**
  * A Message is a type that stores the user-given memo 
  * in a char and int array, and string format.
@@ -31,7 +33,8 @@ public class Message {
 	 * @param message
 	 */
 	Message(String memoB) {
-		messageChar = new char[memoB.length()];
+		//Num chars is /8 bc one char is 8 bits in binary
+		messageChar = new char[memoB.length()/8]; 
 		messageBinary = memoB;
 	}
 	
@@ -60,7 +63,24 @@ public class Message {
 	
 	
 	public void makeChar() {
-		//for(int j = 0; )
+		int msgLength = messageBinary.length()/8;
+		
+		for (int i = 0; i < (msgLength); i ++) {
+			//Get the 8-bits that rep the first char
+			String binaryChar = messageBinary.substring(i*8, i*8 + 8);
+			
+			int decimalVal = 0;
+			for (int j = 0; j < binaryChar.length(); j++) {
+				//int binaryColVal = (int) (Math.pow(2,  i));
+				
+				if(binaryChar.substring(j, j + 1).equals("1")) {
+					decimalVal += Math.pow(2, binaryChar.length() - j - 1);
+				}
+			}
+			//Decimal val is now the decmial val of a letter.
+			messageChar[i] = (char)decimalVal;
+		}
+		
 	}
 	
 	/**
