@@ -9,7 +9,7 @@ public class TestDriver {
 		
 		// Jenny Testing: Encrypt and decrypt message from characters to binary
 		Image im = new Image("testImage.jpg");
-		String binary = Arrays.toString(im.getMessageBinary());
+		String binary = im.getMessageBinary();
 		Message m = new Message(binary);
 		
 		
