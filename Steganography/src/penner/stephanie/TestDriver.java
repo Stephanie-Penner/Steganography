@@ -8,9 +8,9 @@ public class TestDriver {
 	public static void main(String[] args) {
 		
 		// Jenny Testing: Encrypt and decrypt message from characters to binary
-		Image im = new Image("testImage.jpg");
-		String binary = im.getMessageBinary();
-		Message m = new Message(binary);
+		//Image im = new Image("testImage.jpg");
+		//String binary = im.getMessageBinary();
+		//Message m = new Message(binary);
 		
 		
 		Scanner in = new Scanner(System.in);
@@ -51,7 +51,8 @@ public class TestDriver {
 		
 		//Testing images
 		
-		Image image = new Image("testImage.jpg");
+		/**
+		 * Image image = new Image("testImage.jpg");
 		
 		//String[] rgbArray = image.getRGBValues();
 		
@@ -59,6 +60,8 @@ public class TestDriver {
 		
 		System.out.println(testBinary);
 		System.out.println("done");
+		 */
+		
 			
 		
 	}

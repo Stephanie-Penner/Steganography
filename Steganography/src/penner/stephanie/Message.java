@@ -46,6 +46,16 @@ public class Message {
 	public void makeBinary() {
 		for(int j = 0; j < messageChar.length; j ++) {
 			int decimalRem = (int) messageChar[j]; // remaining value of ascII
+			String binaryVer = Integer.toBinaryString(decimalRem);
+			messageBinary = messageBinary + binaryVer;
+			
+		}
+	}
+	
+	/**
+	 * 	public void makeBinary() {
+		for(int j = 0; j < messageChar.length; j ++) {
+			int decimalRem = (int) messageChar[j]; // remaining value of ascII
 			
 			for (int i = 7; i > -1; i--) {
 				int binaryColVal = (int) (Math.pow(2,  i));
@@ -61,8 +71,11 @@ public class Message {
 		}
 	}
 	
+	 */
+	
 	
 	public void makeChar() {
+		System.out.println("makeChar msgBinarylen: " + messageBinary.length());
 		int msgLength = messageBinary.length()/8;
 		
 		for (int i = 0; i < (msgLength); i ++) {
@@ -82,6 +95,30 @@ public class Message {
 		}
 		
 	}
+	
+	/**
+	 * public void makeChar() {
+		System.out.println("makeChar msgBinarylen" + messageBinary.length());
+		int msgLength = messageBinary.length()/8;
+		
+		for (int i = 0; i < (msgLength); i ++) {
+			//Get the 8-bits that rep the first char
+			String binaryChar = messageBinary.substring(i*8, i*8 + 8);
+			
+			int decimalVal = 0;
+			for (int j = 0; j < binaryChar.length(); j++) {
+				//int binaryColVal = (int) (Math.pow(2,  i));
+				
+				if(binaryChar.substring(j, j + 1).equals("1")) {
+					decimalVal += Math.pow(2, binaryChar.length() - j - 1);
+				}
+			}
+			//Decimal val is now the decmial val of a letter.
+			messageChar[i] = (char)decimalVal;
+		}
+		
+	}
+	 */
 	
 	/**
 	 * Gets and returns the binary form of a memo

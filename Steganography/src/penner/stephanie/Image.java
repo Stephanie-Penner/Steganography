@@ -55,9 +55,10 @@ public class Image {
 		
 		String charBinary;
 		String message = "";
+		System.out.println("inMsgBinary");
 		
 		for (int i = 0; i < fullBinary.length; i++) {
-			charBinary = fullBinary[i].substring(fullBinary.length-2);
+			charBinary = fullBinary[i].substring(fullBinary[i].length()-2);
 			message += charBinary;
 		}
 		
