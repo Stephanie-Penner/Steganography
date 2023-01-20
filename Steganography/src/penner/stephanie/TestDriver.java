@@ -1,7 +1,12 @@
 package penner.stephanie;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class TestDriver {
 
@@ -46,12 +51,38 @@ public class TestDriver {
 		/**
 		 * Image image = new Image("testImage.jpg");
 		
+		Scanner in = new Scanner(System.in);
+        //String memo = in.nextLine();
+       
+		
+		//char[] memoChar = memo.toCharArray();
+		
+		//Message msg = new Message(memoChar);
+		//msg.makeBinary();
+		
+		BufferedImage imageEncoded = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+		imageEncoded.setRGB(0, 0, image.getWidth(), image.getHeight(), image.testMethod(), 0, 0);
+		
+		File outputImage = new File("testcode.jpg");
+		
+		try {
+			ImageIO.write(imageEncoded, "jpg", outputImage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		//String[] rgbArray = image.getRGBValues();
 		
-		String testBinary = image.getMessageBinary();
+		//String testBinary = image.getMessageBinary();
 		
-		System.out.println(testBinary.charAt(testBinary.length()-1));
+		/*
+		for (int i = 0; i < image.getNumPixels(); i++) {
+			System.out.println(rgbArray[i]);
+			System.out.println(testBinary.charAt(i*2));
+			System.out.println(testBinary.charAt(i*2 + 1));
+		}
 		System.out.println("done");
+<<<<<<< HEAD
 		 */
 		
 			

@@ -44,6 +44,12 @@ public class Image {
 		return numPixels;
 	}
 	
+	public int[] testMethod() {
+		int[] rgbArray = new int[numPixels];
+		return image.getRGB(0, 0, width, height, rgbArray, 0, width);
+	}
+	
+	
 	/**
 	 * Get the last 2 bits from the blue binary code (the encrypted msg)
 	 * and put it into groups of 8 bits (8 bits = 1 char in encrypted msg)
