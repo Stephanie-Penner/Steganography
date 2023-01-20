@@ -52,14 +52,16 @@ public class Image {
 	 */
 	public String getMessageBinary() {
 		String[] fullBinary = rgbBinary;
+		char[] charMessage = new char[fullBinary.length*2];
 		
 		String charBinary;
 		String message = "";
 		System.out.println("inMsgBinary");
-		
-		for (int i = 0; i < fullBinary.length; i++) {
-			charBinary = fullBinary[i].substring(fullBinary[i].length()-2);
-			message += charBinary;
+
+		for (int i = 0; i < rgbBinary.length; i++) {
+			int length = rgbBinary[i].length();
+			charMessage[i*2] = rgbBinary[i].charAt(length-2);
+			charMessage[i*2 + 1] = (char) rgbBinary[i].charAt(length-1);
 		}
 		
 		return message;

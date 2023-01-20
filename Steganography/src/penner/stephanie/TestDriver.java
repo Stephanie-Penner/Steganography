@@ -8,10 +8,6 @@ public class TestDriver {
 	public static void main(String[] args) {
 		
 		// Jenny Testing: Encrypt and decrypt message from characters to binary
-		//Image im = new Image("testImage.jpg");
-		//String binary = im.getMessageBinary();
-		//Message m = new Message(binary);
-		
 		
 		Scanner in = new Scanner(System.in);
 		String msg = in.nextLine(); //Get message to encode
@@ -26,15 +22,11 @@ public class TestDriver {
 		
 		System.out.println("Message b" + b.getBinary());
 		System.out.println(Arrays.toString(b.getChar()));
+
 		
-		
-		
-		
-		
-		/*
 		//Test code: user input msg, covert to char array
 		// then convert to binary.
-		Scanner in = new Scanner(System.in);
+		//Scanner in = new Scanner(System.in);
 		
 		int num = in.nextInt();
 		System.out.println(num);
@@ -58,7 +50,7 @@ public class TestDriver {
 		
 		String testBinary = image.getMessageBinary();
 		
-		System.out.println(testBinary);
+		System.out.println(testBinary.charAt(testBinary.length()-1));
 		System.out.println("done");
 		 */
 		
