@@ -14,7 +14,7 @@ public class Encode {
 	 * @return - ints of binary of pixels with encoded message.
 	 */
 	private static int[] getRGB(String binaryMessage, Image image) {
-		String[] rgbBinary = image.getRGBValues();
+		String[] rgbBinary = image.getRGBBinary();
 		String origRGB;
 		
 		for (int i = 0; i < binaryMessage.length()/2; i++) {
@@ -27,14 +27,20 @@ public class Encode {
 		for (int i = 0; i < rgbBinary.length; i++) {
 			rgbInts[i] = (int) Long.parseLong(rgbBinary[i], 2);
 		}
-		
 		return rgbInts;
-	}
+	}//good
 	
 	public static void makeCodedImage (String filename, Image image, String messageBinary) {
+		
 		BufferedImage imageEncoded = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 		
-		imageEncoded.setRGB(0, 0, image.getWidth(), image.getHeight(), getRGB(messageBinary, image), 0, 0);
+		int[] rgb = getRGB(messageBinary, image);
+		
+		for (int h = 0; h < image.getHeight(); h++) {
+			for (int w = 0; w < image.getWidth(); w++) {
+				imageEncoded.setRGB(w, h, rgb[h*image.getWidth() + w]);
+			}
+		}
 		
 		File outputImage = new File(filename);
 		
