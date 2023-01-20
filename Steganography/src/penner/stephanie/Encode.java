@@ -8,42 +8,50 @@ import javax.imageio.ImageIO;
 
 public class Encode {
 	/**
-	 * 
-	 * @param binaryMessage
-	 * @param image
-	 * @return - ints of binary of pixels with encoded message.
+	 * Makes an image with a message encoded in the red-green-blue pixels.
+	 * @param filename - the name of the file the encoded image is being created into.
+	 * @param image - the original image being encoded.
+	 * @param msgBinary - the message being encoded into the image, as a string of binary.
 	 */
-	private static int[] getRGB(String binaryMessage, Image image) {
-		String[] rgbBinary = image.getRGBBinary();
+	public static void makeCodedImage (String filename, Image image, String msgBinary) {
+		// Makes a list of the original rgb pixels in strings of binary from the image
+		String[] rgbOld = image.getRGBBinary();
+		
+		// Initializes a variable for a string of binary representing a single pixel
 		String origRGB;
 		
-		for (int i = 0; i < binaryMessage.length()/2; i++) {
-			origRGB = rgbBinary[i];
-			rgbBinary[i] = origRGB.substring(0, origRGB.length()-2) + binaryMessage.substring(i*2, i*2 + 2);
+		// Sets an array for the new strings of binary for each pixel encoded with the message
+		String[] rgbNew = rgbOld;
+		
+		// Loops through the message, encoding 2 bits of binary in each rgb pixel into the list of new binary.
+		for (int i = 0; i < msgBinary.length()/2; i++) {
+			origRGB = rgbOld[i];
+			rgbNew[i] = origRGB.substring(0, origRGB.length()-2) + msgBinary.substring(i*2, i*2 + 2);
+			System.out.println(rgbNew[i]);
 		}
 		
-		int[] rgbInts = new int[rgbBinary.length];
+		// Initializes an array for the string binary rgb values converted into ints.
+		int[] rgbInts = new int[rgbOld.length];
 		
-		for (int i = 0; i < rgbBinary.length; i++) {
-			rgbInts[i] = (int) Long.parseLong(rgbBinary[i], 2);
+		// Changes the strings of binary representing the rgb of each pixel into their integer equivalent
+		for (int i = 0; i < rgbNew.length; i++) {
+			rgbInts[i] = (int) Long.parseLong(rgbNew[i], 2);
 		}
-		return rgbInts;
-	}//good
-	
-	public static void makeCodedImage (String filename, Image image, String messageBinary) {
 		
+		// Makes a new buffered imaged for encoded image, that takes the rgb values as ints (TYPE_INT_RGB).
 		BufferedImage imageEncoded = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 		
-		int[] rgb = getRGB(messageBinary, image);
-		
+		// Sets the rgb values of new image to the encoded pixels.
 		for (int h = 0; h < image.getHeight(); h++) {
 			for (int w = 0; w < image.getWidth(); w++) {
-				imageEncoded.setRGB(w, h, rgb[h*image.getWidth() + w]);
+				imageEncoded.setRGB(w, h, rgbInts[h*image.getWidth() + w]);
 			}
 		}
 		
+		// Makes an output file.
 		File outputImage = new File(filename);
 		
+		// Writes a file of type 
 		try {
 			ImageIO.write(imageEncoded, "jpg", outputImage);
 		} catch (IOException e) {
