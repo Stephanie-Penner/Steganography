@@ -60,8 +60,6 @@ public class Image {
 		String[] fullBinary = rgbBinary;
 		char[] charMessage = new char[fullBinary.length*2];
 		
-		String charBinary;
-		String message = "";
 		System.out.println("inMsgBinary");
 
 		for (int i = 0; i < rgbBinary.length; i++) {
@@ -69,6 +67,8 @@ public class Image {
 			charMessage[i*2] = rgbBinary[i].charAt(length-2);
 			charMessage[i*2 + 1] = (char) rgbBinary[i].charAt(length-1);
 		}
+		
+		String message = String.valueOf(charMessage);
 		
 		return message;
 	}

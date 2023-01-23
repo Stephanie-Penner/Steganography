@@ -45,34 +45,12 @@ public class Message {
 	 */
 	public void makeBinary() {
 		for(int j = 0; j < messageChar.length; j ++) {
-			int decimalRem = (int) messageChar[j]; // remaining value of ascII
-			String binaryVer = Integer.toBinaryString(decimalRem);
+			int decimal = (int) messageChar[j]; // decimal value of ascII
+			String binaryVer = Integer.toBinaryString(decimal);
 			messageBinary = messageBinary + binaryVer;
 			
 		}
-	}
-	
-	/**
-	 * 	public void makeBinary() {
-		for(int j = 0; j < messageChar.length; j ++) {
-			int decimalRem = (int) messageChar[j]; // remaining value of ascII
-			
-			for (int i = 7; i > -1; i--) {
-				int binaryColVal = (int) (Math.pow(2,  i));
-				
-				if(decimalRem >= binaryColVal) {
-					decimalRem = decimalRem - binaryColVal;
-					messageBinary = messageBinary + "1"; //Col active
-				}
-				else {
-					messageBinary = messageBinary + "0"; //Column inactive
-				}
-			}
-		}
-	}
-	
-	 */
-	
+	}	
 	
 	public void makeChar() {
 		System.out.println("makeChar msgBinarylen: " + messageBinary.length());
@@ -97,6 +75,25 @@ public class Message {
 	}
 	
 	/**
+	 * Gets and returns the binary form of a memo
+	 * @param binaryMsg
+	 * @return memo in binary form
+	 */
+	public String getBinary() {
+		return messageBinary;
+	}
+	
+	/**
+	 * Gets and returns the char form of a memo
+	 * @param binaryMsg
+	 * @return memo in char form
+	 */
+	public char[] getChar() {
+		return messageChar;
+	}
+}
+	
+	/**
 	 * public void makeChar() {
 		System.out.println("makeChar msgBinarylen" + messageBinary.length());
 		int msgLength = messageBinary.length()/8;
@@ -119,26 +116,3 @@ public class Message {
 		
 	}
 	 */
-	
-	/**
-	 * Gets and returns the binary form of a memo
-	 * @param binaryMsg
-	 * @return memo in binary form
-	 */
-	public String getBinary() {
-		return messageBinary;
-	}
-	
-	/**
-	 * Gets and returns the char form of a memo
-	 * @param binaryMsg
-	 * @return memo in char form
-	 */
-	public char[] getChar() {
-		return messageChar;
-	}
-	
-	
-	
-	
-}

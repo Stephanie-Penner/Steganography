@@ -13,8 +13,8 @@ public class TestDriver {
 	public static void main(String[] args) {
 		
 		// Jenny Testing: Encrypt and decrypt message from characters to binary
-		
 		Scanner in = new Scanner(System.in);
+		/*
 		String msg = in.nextLine(); //Get message to encode
 		Message c = new Message(msg.toCharArray()); //Create msg using char array
 		c.makeBinary(); //Make binary ver of msg
@@ -27,23 +27,36 @@ public class TestDriver {
 		
 		System.out.println("Message b" + b.getBinary());
 		System.out.println(Arrays.toString(b.getChar()));
-
+		*/
 		
 		//Test code: user input msg, covert to char array
 		// then convert to binary.
 		//Scanner in = new Scanner(System.in);
 		
-		int num = in.nextInt();
-		System.out.println(num);
+		//int num = in.nextInt();
+		//System.out.println(num);
 		
 		String memo = in.nextLine();
 		
 		char[] memoChar = memo.toCharArray();
 		
+		Message m = new Message(memoChar);
+		m.makeBinary();
+		String msgbin = m.getBinary();
+		
+		Image test2 = new Image("test2.png");
+		
+		Encode.makeCodedImage("testA.jpg", test2, msgbin);
+		
+		
+		
+		
+		//BufferedImage test1 = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+		//BufferedImage testa = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+		
 		//Message memoA = new Message(memoChar);
 		//memoA.toBinary(memoChar);
 		
-		*/
 		
 		
 		//Testing images
