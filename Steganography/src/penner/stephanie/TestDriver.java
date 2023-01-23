@@ -11,96 +11,34 @@ import javax.imageio.ImageIO;
 public class TestDriver {
 
 	public static void main(String[] args) {
-		
-		// Jenny Testing: Encrypt and decrypt message from characters to binary
 		Scanner in = new Scanner(System.in);
-		/*
-		String msg = in.nextLine(); //Get message to encode
-		Message c = new Message(msg.toCharArray()); //Create msg using char array
-		c.makeBinary(); //Make binary ver of msg
+		System.out.print("What is the file name: ");
+		String fName = in.nextLine();
 		
-		System.out.println(c.getBinary());
+		Image test = new Image(fName);
 		
-		//If given a string of binary, get the Print out binary ver of msg
-		Message b = new Message(c.getBinary());
-		b.makeChar();
+		test.getNumPixels();
 		
-		System.out.println("Message b" + b.getBinary());
-		System.out.println(Arrays.toString(b.getChar()));
-		*/
+		String f = "a`";
+		String binaryF = Encode.makeBinary(f);
+		System.out.println("binaryF: " + binaryF);
 		
-		//Test code: user input msg, covert to char array
-		// then convert to binary.
-		//Scanner in = new Scanner(System.in);
+		System.out.format("Message has a maximum character limit of %d characters.", test.getMaxMsgSize());
 		
-		//int num = in.nextInt();
-		//System.out.println(num);
+		System.out.println("What is your message?");
+		String message = in.nextLine();
 		
-		String memo = in.nextLine();
+		String binary = Encode.makeBinary(message);
+		char[] chars = Encode.makeChar(binary);
+		System.out.println("chars: " + Arrays.toString(chars));
+		System.out.println("binary: " + binary);
 		
-		char[] memoChar = memo.toCharArray();
+		Encode.makeCodedImage("iwanttosleeEp.png", test, binary);
 		
-		Message m = new Message(memoChar);
-		m.makeBinary();
-		String msgbin = m.getBinary();
+		String binaryMessage = "0101010101010";
 		
-		Image test2 = new Image("test2.png");
-		
-		Encode.makeCodedImage("testA.jpg", test2, msgbin);
-		
-		
-		
-		
-		//BufferedImage test1 = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-		//BufferedImage testa = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-		
-		//Message memoA = new Message(memoChar);
-		//memoA.toBinary(memoChar);
-		
-		
-		
-		//Testing images
-		
-		/**
-		 * Image image = new Image("testImage.jpg");
-		
-		Scanner in = new Scanner(System.in);
-        //String memo = in.nextLine();
-       
-		
-		//char[] memoChar = memo.toCharArray();
-		
-		//Message msg = new Message(memoChar);
-		//msg.makeBinary();
-		
-		BufferedImage imageEncoded = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
-		imageEncoded.setRGB(0, 0, image.getWidth(), image.getHeight(), image.testMethod(), 0, 0);
-		
-		File outputImage = new File("testcode.jpg");
-		
-		try {
-			ImageIO.write(imageEncoded, "jpg", outputImage);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		//String[] rgbArray = image.getRGBValues();
-		
-		//String testBinary = image.getMessageBinary();
-		
-		/*
-		for (int i = 0; i < image.getNumPixels(); i++) {
-			System.out.println(rgbArray[i]);
-			System.out.println(testBinary.charAt(i*2));
-			System.out.println(testBinary.charAt(i*2 + 1));
-		}
-		System.out.println("done");
-<<<<<<< HEAD
-		 */
-		
-			
-		
-	}
-	
 
+		Encode.makeCodedImage("hhhhhhh.jpg", test, binaryMessage);		//Test code: user input msg, covert to char array
+
+	}
 }

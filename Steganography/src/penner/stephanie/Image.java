@@ -25,10 +25,10 @@ public class Image {
 		width = image.getWidth();
 		height = image.getHeight();
 		numPixels = width*height;
-		rgbBinary = getRGBValues();
+		rgbBinary = getRGBBinary();
 	}
 	
-	public String[] getRGBValues(){
+	public String[] getRGBBinary(){
 		int[] rgbArray = new int[numPixels];
 		rgbArray = image.getRGB(0, 0, width, height, rgbArray, 0, width);
 		String[] rgbArrayBinary = new String[rgbArray.length];
@@ -40,13 +40,24 @@ public class Image {
 		return rgbArrayBinary;
 	}
 	
+	public int[] getRGBInts() {
+		int[] rgbArray = new int[numPixels];
+		return image.getRGB(0, 0, width, height, rgbArray, 0, width);
+	}
+	
 	public int getNumPixels() {
 		return numPixels;
 	}
 	
+	public int getMaxMsgSize() {	
+		return (numPixels/8);
+	}
+	
 	public int[] testMethod() {
 		int[] rgbArray = new int[numPixels];
-		return image.getRGB(0, 0, width, height, rgbArray, 0, width);
+		rgbArray = image.getRGB(0, 0, width, height, rgbArray, 0, width);
+		System.out.println(rgbArray[0]);
+		return rgbArray;
 	}
 	
 	
