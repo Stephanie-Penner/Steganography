@@ -13,7 +13,7 @@ public class Encode {
 	 * @param image - the original image being encoded.
 	 * @param msgBinary - the message being encoded into the image, as a string of binary.
 	 */
-	public static void makeCodedImage (String filename, Image image, String msgBinary) {
+	public static void makeCodedImage (String filename, String filetype, Image image, String msgBinary) {
 		// Makes a list of the original rgb pixels in strings of binary from the image
 		String[] rgbOld = image.getRGBBinary();
 		
@@ -49,11 +49,11 @@ public class Encode {
 		}
 		
 		// Makes an output file.
-		File outputImage = new File(filename);
+		File outputImage = new File(filename + "." + filetype);
 		
 		// Writes a file of type 
 		try {
-			ImageIO.write(imageEncoded, "jpg", outputImage);
+			ImageIO.write(imageEncoded, filetype, outputImage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class Encode {
 		for(int j = 0; j < messageChar.length; j ++) {
 			
 			//--------------DEBUG
-			System.out.println("messageChar[j]: " + messageChar[j]);
+			//System.out.println("messageChar[j]: " + messageChar[j]);
 			
 			int decimal = (int) messageChar[j]; // decimal value of ascII
 			String binaryVer = Integer.toBinaryString(decimal);
@@ -82,11 +82,13 @@ public class Encode {
 			}
 			
 			//--------DEBUG
-			System.out.println("binaryVer: "+ binaryVer);
+			//System.out.println("binaryVer: "+ binaryVer);
 			
 			messageBinary = messageBinary + binaryVer;
 			
 		}
+		
+		messageBinary = messageBinary + "00011010"; //00011010 is the end of line character
 		return messageBinary;
 	}	
 	
@@ -96,17 +98,51 @@ public class Encode {
 	 * @param messageBinary - String of message in binary
 	 * @return messageChar - char array of message
 	 */
-	public static char[] makeChar(String messageBinary) {
-		int msgLength = messageBinary.length()/8;
-		char[] messageChar = new char[msgLength];
+	public static String makeChar(String messageBinary) {
+		int i = 0; //Set a counter
+		String messageChar = "";
 		
-		for (int i = 0; i < (msgLength); i ++) {
+		boolean exit = false;
+		
+		//for (int i = 0; i < (msgLength); i ++) {		
+		while((!(exit))) {			
 			//Get the 8-bits that rep the first char
 			String binaryChar = messageBinary.substring(i*8, i*8 + 8);
 			
+			if(binaryChar.equals("00011010")) {
+				System.out.println(false);
+				exit = true;
+			}
+			
 			int decimalVal = 0;
 			for (int j = 0; j < binaryChar.length(); j++) {
-				//int binaryColVal = (int) (Math.pow(2,  i));
+				
+				if(binaryChar.substring(j, j + 1).equals("1")) {
+					decimalVal += Math.pow(2, binaryChar.length() - j - 1);
+				}
+			}
+			
+			//Decimal val is now the decmial val of a letter.
+			messageChar = messageChar + (char)decimalVal;
+			i++; // increase counter
+		}
+		return messageChar.substring(0, messageChar.length()-1);
+	}
+	/*
+	 * 	public static char[] makeChar(String messageBinary) {
+		int msgLength = messageBinary.length()/8;
+		
+		char[] messageChar = new char[msgLength];
+		for (int i = 0; i < (msgLength); i ++) {		
+			int i = 0; //Set a counter
+			
+			//Get the 8-bits that rep the first char
+			String binaryChar = messageBinary.substring(i*8, i*8 + 8);
+			System.out.println(binaryChar);
+			
+			int decimalVal = 0;
+			
+			for (int j = 0; j < binaryChar.length(); j++) {
 				
 				if(binaryChar.substring(j, j + 1).equals("1")) {
 					decimalVal += Math.pow(2, binaryChar.length() - j - 1);
@@ -114,8 +150,12 @@ public class Encode {
 			}
 			//Decimal val is now the decmial val of a letter.
 			messageChar[i] = (char)decimalVal;
+			System.out.println(i);
 		}
+			
+		//}
 		return messageChar;
 	}
+	 */
 	
 }

@@ -50,14 +50,7 @@ public class Image {
 	}
 	
 	public int getMaxMsgSize() {	
-		return (numPixels/8);
-	}
-	
-	public int[] testMethod() {
-		int[] rgbArray = new int[numPixels];
-		rgbArray = image.getRGB(0, 0, width, height, rgbArray, 0, width);
-		System.out.println(rgbArray[0]);
-		return rgbArray;
+		return (numPixels/8)-1;
 	}
 	
 	
@@ -70,8 +63,6 @@ public class Image {
 	public String getMessageBinary() {
 		String[] fullBinary = rgbBinary;
 		char[] charMessage = new char[fullBinary.length*2];
-		
-		System.out.println("inMsgBinary");
 
 		for (int i = 0; i < rgbBinary.length; i++) {
 			int length = rgbBinary[i].length();
