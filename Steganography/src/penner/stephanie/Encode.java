@@ -32,7 +32,6 @@ public class Encode {
 		for (int i = 0; i < msgBinary.length() / 2; i++) {
 			origRGB = rgbOld[i];
 			rgbNew[i] = origRGB.substring(0, origRGB.length() - 2) + msgBinary.substring(i * 2, i * 2 + 2);
-			System.out.println(rgbNew[i]);
 		}
 
 		// Initializes an array for the string binary rgb values converted into ints.
@@ -67,7 +66,7 @@ public class Encode {
 	}
 
 	/**
-	 * Converts an arraylist of chars to binary form
+	 * Converts String message to binary form
 	 * 
 	 * @param message - message as a string
 	 * @return String of binary - binary string of the message
