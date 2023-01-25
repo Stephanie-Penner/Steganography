@@ -49,8 +49,14 @@ public class Image {
 		return numPixels;
 	}
 	
+	/**
+	 * Calculates and returns the maximum message size a user can input
+	 * into a message
+	 * @return maximum message size
+	 */
 	public int getMaxMsgSize() {	
-		return (numPixels/8)-1;
+		//Max message is pixels /8 bc there's 8 bits per character
+		return (numPixels/4)-1; // -1 because end of msg character is required
 	}
 	
 	
